@@ -35,4 +35,4 @@ jobs:
         with:
           name: artifacts
           path:
-            app/**/apk/release/*
+            app/build/outputs/apk/release/*.apk
