@@ -14,6 +14,26 @@ project("nativeci")
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
+# 间接跳转,并加密跳转目标(-mllvm -irobf-indbr)
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -mllvm -irobf-indbr")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mllvm -irobf-indbr")
+
+# 间接函数调用,并加密目标函数地址(-mllvm -irobf-icall)
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -mllvm -irobf-icall")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mllvm -irobf-icall")
+
+# 间接全局变量引用,并加密变量地址(-mllvm -irobf-indgv)
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -mllvm -irobf-indgv")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mllvm -irobf-indgv")
+
+# 字符串(c string)加密功能(-mllvm -irobf-cse)
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -mllvm -irobf-cse")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mllvm -irobf-cse")
+
+# 过程相关控制流平坦混淆(-mllvm -irobf-cff)
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -mllvm -irobf-cff")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mllvm -irobf-cff")
+
 add_library( # Sets the name of the library.
              native-lib
 
